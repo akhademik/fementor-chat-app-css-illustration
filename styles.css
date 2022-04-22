@@ -4,41 +4,285 @@
 *::before,
 *::after {
   margin: 0;
-  box-sizing: border-box;
+  box-sizing: border-box;     
+  /* Global variables */
+  /* COLORS */
+  --clr-pale-violet: hsl(276, 100%, 81%);    /*(sub-heading at the top of the app UI) */
+  --clr-moderate-violet: hsl(276, 55%, 52%);  /* (chat on the left) */
+  --clr-desaturated-dark-violet:: hsl(271, 15%, 43%); /* (chat on the right) */
+  --clr-grayish-blue: hsl(206, 6%, 79%); /* (placeholder text) */
+  --clr-very-dark-desaturated-violet: hsl(271, 36%, 24%); /* (main heading) */
+  --clr-dark-grayish-violet: hsl(270, 7%, 64%); /* (paragraph) */
 
-  font-family: "Rubik", sans-serif;
-  font-size: 16px;
-
-/* Global variables */
-/* COLORS */
-     --clr-pale-violet: hsl(276, 100%, 81%);    /*(sub-heading at the top of the app UI) */
-    --clr-moderate-violet: hsl(276, 55%, 52%);  /* (chat on the left) */
-    --clr-desaturated-dark-violet:: hsl(271, 15%, 43%); /* (chat on the right) */
-    --clr-grayish-blue: hsl(206, 6%, 79%); /* (placeholder text) */
-    --clr-very-dark-desaturated-violet: hsl(271, 36%, 24%); /* (main heading) */
-    --clr-dark-grayish-violet: hsl(270, 7%, 64%); /* (paragraph) */
-
-    --clr-white: hsl(0, 0%, 100%);
-    --clr-light-grayish-violet: hsl(270, 20%, 96%); /* (app background) */
-    --clr-very-dark-desaturated-violet: hsl(271, 36%, 24%); /* (submit button background) */
-    --clr-very-vight-magenta: hsl(289, 100%, 72%); /* (radio button outline) */
+  --clr-white: hsl(0, 0%, 100%);
+  --clr-light-grayish-violet: hsl(270, 20%, 96%); /* (app background) */
+  --clr-very-dark-desaturated-violet: hsl(271, 36%, 24%); /* (submit button background) */
+  --clr-very-vight-magenta: hsl(289, 100%, 72%); /* (radio button outline) */
 
 /* LINEAR BG      */
-    --clr-ln-light-magenta: hsl(293, 100%, 63%);
-    --clr-ln-light-violet: hsl(264, 100%, 61%);
+  --clr-ln-light-magenta: hsl(293, 100%, 63%);
+  --clr-ln-light-violet: hsl(264, 100%, 61%);
 
 /* FONTS  */
-    --ft-weight400: 400;
-    --ft-weight500: 500;
-    --ft-weight700: 700;
+  --ft-weight400: 400;
+  --ft-weight500: 500;
+  --ft-weight700: 700;
 
-    --gbl-ft-weight: var(--ft-weight400);
-    --gbl-ft-color: var(--clr-dark-grayish-violet);
+  --gbl-ft-weight: var(--ft-weight400);
+  --gbl-ft-color: var(--clr-dark-grayish-violet);
 
-    
+    font-weight: var(--gbl-ft-weight);
+    color: var(--gbl-ft-color);
 }
 
 body {
-    font-weight: var(--gbl-ft-weight);
-    color: var(--gbl-ft-color);
+    font-family: "Rubik", sans-serif;
+    font-size: 16px;
+    min-height: 100vh;
+    background-color: var(--clr-light-grayish-violet);
+    min-width: 375px;
+    max-width: 425px;
+}
+
+/* MAIN DIV AND BACKGROUND COLORS */
+.wrapper {    
+    position: relative;
+    margin: 2rem 1rem;      
+}
+.wrapper::before,
+.wrapper::after{         
+    content: '';
+    display: flex;
+    position: absolute;
+    background: linear-gradient(to top right, var(--clr-ln-light-violet),var(--clr-ln-light-magenta));    
+    background-repeat: no-repeat;    
+    min-width: 525px;
+    max-width: 631px;    
+    z-index: -1; 
+}
+.wrapper::before{
+    transform: translate(-70%, -15%);
+    border-radius: 0 0 250px 250px;
+    height: 60vh;
+}
+.wrapper::after{
+    transform: translate(30%, -92%);
+    border-radius: 250px 250px 0 0;
+    opacity: .025;
+    height: 55vh;
+}
+
+/* BEGIN OF TINY MOBILE SCREEN */
+.mobile__screen{
+    background-color: var(--clr-white);    
+    border-radius: 2rem;
+    margin: 5rem 2rem;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    
+}
+.mobile__screen__header{
+    background: linear-gradient(to right, var(--clr-ln-light-violet),var(--clr-ln-light-magenta));
+    border-radius: 1.5rem 1.5rem .5rem .5rem;
+    display: flex;    
+    align-items: center;
+    position: relative;
+    justify-content: space-between;
+    padding: 2rem 0 .7rem .5rem;    
+}
+.mobile__screen__header img:last-child{
+    padding-right: .6rem;
+}
+.mobile__screen__header::before{
+    content: '';    
+    display: flex;
+    position: absolute;
+    top: -20%;
+    left: 15%;
+    background-color: var(--clr-white);
+    border-radius: 2rem;
+    width: 70%;
+    height: 40px;
+}
+.mobile__screen__header--left{
+    display: flex;    
+}
+.mobile__screen__header--left img:first-child{
+    padding-right: .3rem;  
+}
+
+.mobile__screen__header--avt {
+    width: 35px;    
+    border: 1px solid var(--clr-white);
+    border-radius: 50%;
+}
+.mobile__screen__header--user {
+    --gbl-ft-color: var(--clr-pale-violet);    
+    --gbl-ft-weight: var(--ft-weight700);
+    font-size: .8rem;
+    padding: 0 .6rem;
+}
+.mobile__screen__header--user::after {
+    --gbl-ft-color: var(--clr-pale-violet);    
+    font-size: .6rem;
+    content: 'Available to Walk';
+    padding-top: .2rem;
+    display: block;
+}
+.mobile__screen__body{
+    background-color: #F5F3F8;
+    padding: .5rem 1rem;      
+    border-radius: 0 0 1.3rem 1.3rem;    
+    
+}
+.mobile__screen__body p{
+    margin-top: .4rem;
+}
+.mobile__screen__chat-bubble--dog{
+    max-width: 70%;
+    text-align: right;    
+    margin-left: auto;
+}
+.mobile__screen__chat-bubble--dog img{
+    width: 40px;
+    border-radius: .5rem;
+    margin-left: .2rem; 
+    margin-right: 0;       
+}
+.mobile__screen__chat-bubble--left,
+.mobile__screen__chat-bubble--right{
+    background-color: #EDE5F4 ;  
+    --gbl-ft-color: var(--clr-moderate-violet);  
+    --gbl-ft-weight: var(--ft-weight500);
+    width: fit-content;
+    max-width: 70%;
+    font-size: .65rem;
+    padding: .5rem .5rem;
+    border-radius: .7rem;
+}
+.mobile__screen__chat-bubble--left{
+    border-bottom-left-radius: .2rem;
+    margin-right: auto;    
+}
+.mobile__screen__chat-bubble--right{
+    --gbl-ft-color: var(--clr-desaturated-dark-violet);
+    background-color: var(--clr-white);
+    border-bottom-right-radius: .2rem;
+    margin-left: auto;       
+}
+.mobile__screen__chat-price--left{
+    background: linear-gradient(to left, var(--clr-ln-light-violet),var(--clr-ln-light-magenta));
+    --gbl-ft-color: var(--clr-pale-violet); 
+    --gbl-ft-weight: var(--ft-weight500);
+    max-width: 80%;
+    max-height: fit-content;
+    font-size: .65rem;
+    padding: .5rem .5rem;
+    border-radius: .7rem;
+    border-bottom-left-radius: .2rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.mobile__screen__chat-price--left img {
+    opacity: .4;
+    padding-right: .2rem;
+}
+.mobile__screen__chat-price--left::after {
+    content: '$29';
+    --gbl-ft-color: var(--clr-white);
+    --gbl-ft-weight: var(--ft-weight500);
+    /* display: flex; */
+    position: absolute;
+    right: 0;
+    padding-right: .6rem;
+    font-size: .8rem;
+}
+.mobile__screen__chat-price--left:last-child:after {
+    content: '$49';
+}
+.mobile__screen__typing{
+    background-color: var(--clr-white);
+    --gbl-ft-color: var(--clr-pale-violet);        
+    border-radius: 25px;
+    padding: .2rem 1rem;
+    padding-right: 2px;
+    margin-top: 1rem;
+    margin-bottom: .2rem;
+    font-size: .6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.mobile__screen__typing p{
+    opacity: .4;
+}
+.mobile__screen__typing a{
+    height: 1.7rem;
+    width: 1.7rem;
+    background-color: var(--clr-very-dark-desaturated-violet);
+    border-radius: 50%;
+}
+.mobile__screen__typing a::after{
+    content: '';
+    position: absolute;
+    transform: translate(20%, 20%);
+    background-image: url('https://api.iconify.design/akar-icons/chevron-right.svg?color=white') ;
+    background-repeat: no-repeat;
+    height: 1.7rem;
+    width: 1.7rem;
+}
+/* END OF TINY MOBILE SCREEN  */
+
+/* BEGIN OF MAIN CONTENT  */
+.main__content{
+    text-align: center;
+}
+.main__content__header{
+    --gbl-ft-color: var(--clr-very-dark-desaturated-violet);
+    --gbl-ft-weight: var(--ft-weight500);
+    font-size: 2.7rem;
+    padding-bottom: 2rem;
+}
+.main__content__details{
+    line-height: 1.6rem;
+    padding: 0 .3rem;
+}
+/* END OF MAIN CONTENT  */
+
+/* BEGIN OF DESKTOP  */
+@media (min-width: 45em){
+    body {
+        min-width: 100vw;     
+        display: flex;
+        align-items: center;      
+        justify-content: center;
+    }
+    .wrapper {
+        margin: 0;
+        padding: 2% 13% ; 
+        display: flex;          
+        max-width: 1440px;
+        align-items: center;    
+    }
+    .mobile__screen{
+        max-width: 300px;        
+        min-width: 270px; 
+}
+    .main__content{
+        max-width: 470px;
+        text-align: left;
+        padding: 0 3rem;
+    }
+    .wrapper::before{
+        top: 0;
+        left: 18%;     
+        height: 100vh;
+    }
+    .wrapper::after{
+        top: 130%;
+        right: 0;             
+        height: 100vh;
+    }
 }
